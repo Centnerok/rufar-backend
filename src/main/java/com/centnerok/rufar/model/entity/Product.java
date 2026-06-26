@@ -26,7 +26,7 @@ public class Product {
 
     @OneToOne
     @JoinColumn(name="user_id", nullable=false)
-    private User user_id;
+    private User userId;
 
     @Column(name="name", nullable=false)
     private String name;
@@ -35,7 +35,7 @@ public class Product {
     private String description;
 
     @Column(name="photo_path")
-    private String photo_path;
+    private String photoPath;
 
     @Column(name="price")
     private Long price;

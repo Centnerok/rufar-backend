@@ -39,7 +39,7 @@ public class User {
     private String description;
 
     @Column(name="photo_path")
-    private String photo_path;
+    private String photoPath;
 
     @Enumerated(EnumType.STRING)
     @Column(name="rating")

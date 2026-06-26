@@ -17,6 +17,6 @@ public class UserDto {
     private String password;
     private String name;
     private String description;
-    private String photo_path;
+    private String photoPath;
     private Rating rating;
 }
