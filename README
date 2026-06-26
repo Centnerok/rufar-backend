@@ -167,6 +167,7 @@ com.centnerok.rufar
     model
         entity - сущности
         dto - объект, содержащий данные сущности
+        enums
     controller - контроллеры
     mapper - мапперы, для перевода из entity в dto и наоборот
     service - бизнес-логика
