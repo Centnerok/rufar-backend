@@ -172,3 +172,13 @@ com.centnerok.rufar
     service - бизнес-логика
         impl - реализация бизнес-логики
     repository - репозитории для бд
+
+
+src
+    resources
+        static
+            uploads
+                users
+                    *user_id*.jpg
+                products
+                    *product_id*.jpg
