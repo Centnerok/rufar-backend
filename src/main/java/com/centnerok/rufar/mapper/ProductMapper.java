@@ -1,8 +1,11 @@
 package com.centnerok.rufar.mapper;
 
+import org.springframework.stereotype.Component;
+
 import com.centnerok.rufar.model.dto.ProductDto;
 import com.centnerok.rufar.model.entity.Product;
 
+@Component
 public class ProductMapper {
     public static ProductDto mapToDto (Product product) {
         ProductDto productDto = new ProductDto();

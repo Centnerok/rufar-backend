@@ -1,8 +1,11 @@
 package com.centnerok.rufar.mapper;
 
+import org.springframework.stereotype.Component;
+
 import com.centnerok.rufar.model.dto.UserDto;
 import com.centnerok.rufar.model.entity.User;
 
+@Component
 public class UserMapper {
     public static UserDto mapToDto (User user) {
         UserDto userDto = new UserDto();
