@@ -1,0 +1,174 @@
+============================================================== RUSSIAN ============================================================
+
+НАЗВАНИЕ ПРОЕКТА: RUFAR
+ОПИСАНИЕ: Этот проект будет имитировать работу популярного веб-ресурса kufar.com, а точнее, эмулировать серверную часть kufar. 
+На нем вы можете просматривать продукты, скачивать их, обновлять, если вы являетесь автором, регистрироваться и входить в систему.
+Этот проект представляет собой REST API Spring Boot с базой данных Postgresql.
+
+===================================================================================================================================
+
+ИСПОЛЬЗУЕМЫЕ ТЕХНОЛОГИИ:
+Spring Boot, Spring MVC, Spring Data JPA, Spring Security, Postgresql
+
+===================================================================================================================================
+
+ФУНКЦИИ, КОТОРЫЕ ПРЕДОСТАВЛЯЕТ ПРИЛОЖЕНИЕ:
+
+1. Добавление своих товаров с названием, фото, описанием и ценой
+2. Редактирование/удаление своих товаров
+3. Поиск по всем объявлениям
+4. Просмотр товаров с их фото, описанием и ценой
+5. Переход к продавцу и просмотр сведений о нем
+6. Сортировка по городу, ключевым словам в названии объявления
+7. Создание аккаунта(регистрация) с внесением информации о себе(описание, контакты, фотография, город)
+8. Вход в свой аккаунт с использованием логина и пароля
+
+===================================================================================================================================
+
+СУЩНОСТИ, ИСПОЛЬЗУЕМЫЕ В ПРИЛОЖЕНИИ:
+1. product (товар)
+2. user (пользователь/продавец)
+
+===================================================================================================================================
+
+PRODUCT(table "products"):
+
+Long id (PRIMARY KEY)
+Long user_id (FOREIGN KEY REFERENCES users(id))
+String name
+String description
+String photo_path
+Long price
+String city
+
+===================================================================================================================================
+
+USER(table "users"):
+
+Long id (PRIMARY KEY)
+String email
+String password
+String name
+String description
+String photo_path
+Rating(enum) rating
+
+===================================================================================================================================
+
+ENDPOINTS:
+
+REGISTER/AUTHORIZATION
+
+POST /api/users/register - создание нового пользователя(регистрация)
+
+Content-type: multipart/form-data
+email        example@gmail.com
+password     password
+name         name
+description  description
+avatar       photo
+
+201 CREATED + UserDto
+-------
+
+POST /api/users/login - вход в свой логин
+{
+    "email": "example@gmail.com",
+    "password": "password"
+} 
+200 OK + "you have successfully logged in to your email: " + email
+-------
+
+PUT /api/users?id=1 - Обновление информации о пользователе по id
+
+Content-type: multipart/form-data
+email        example@gmail.com
+password     password
+name         name
+description  description
+avatar       photo
+
+202 ACCEPTED + UserDto
+-------
+
+DELETE /api/users?id=1 - Обновление информации о пользователе по id
+
+200 OK + "User with id="+id+" has been successfully deleted"
+-------
+
+GET /api/users - показать всех пользователей
+
+
+
+200 OK + List<ProductDto>
+-------
+
+GET /api/users?id=1 - показать пользователя по id
+
+
+
+200 OK + UserDto
+-------
+
+
+PRODUCTS
+
+GET /api/products?keywords=keywords&price=100&city=Minsk - поиск объявлений с фильтрами/без
+
+
+
+200 OK + List<ProductDto>
+-------
+
+GET /api/products?id=1 - поиск объявления по id
+
+
+
+200 OK + ProductDto
+-------
+
+POST /api/products - создание продукта
+
+Content-type: multipart/form-data
+user_id       1
+name          name
+description   description
+price         100
+city          Minsk
+avatar        photo
+
+200 OK + ProductDto
+-------
+
+PUT /api/products?id=1 - обновление  информации о продукте
+
+Content-type: multipart/form-data
+name          name
+description   description
+price         100
+city          Minsk
+avatar        photo
+
+200 OK + ProductDto
+-------
+
+DELETE /api/products?id=1 - удаление продукта
+
+200 OK + "Product with id="+id+" has been successfully deleted"
+-------
+
+===================================================================================================================================
+
+АРХИТЕКТУРА ПРОЕКТА
+
+com.centnerok.rufar
+    config - конфиги
+    exception - исключения
+    model
+        entity - сущности
+        dto - объект, содержащий данные сущности
+    controller - контроллеры
+    mapper - мапперы, для перевода из entity в dto и наоборот
+    service - бизнес-логика
+        impl - реализация бизнес-логики
+    repository - репозитории для бд
