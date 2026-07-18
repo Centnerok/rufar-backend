@@ -7,7 +7,7 @@ import com.centnerok.rufar.model.entity.Product;
 
 @Component
 public class ProductMapper {
-    public static ProductDto mapToDto (Product product) {
+    public ProductDto mapToDto (Product product) {
         ProductDto productDto = new ProductDto();
         productDto.setId(product.getId());
         productDto.setUserId(product.getUserId());
@@ -20,7 +20,7 @@ public class ProductMapper {
         return productDto;
     }
 
-    public static Product mapToProduct (ProductDto productDto) {
+    public Product mapToProduct (ProductDto productDto) {
         Product product = new Product();
         product.setId(productDto.getId());
         product.setUserId(productDto.getUserId());
